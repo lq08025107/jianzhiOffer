@@ -97,13 +97,27 @@ public class Sort {
         while(left <= right)
             arr[left++] = tmp[t++];
     }
+    public static  int countPrimes(int n) {
+        boolean[] notPrime = new boolean[n];
+        int count = 0;
+        for (int i = 2; i < n; i++) {
+            if (notPrime[i] == false) {
+                count++;
+                for (int j = 2; i*j < n; j++) {
+                    notPrime[i*j] = true;
+                }
+            }
+        }
 
+        return count;
+    }
     public static void main(String[] args){
         int[] x = new int[]{5,4,7,9,12,9,0,3};
         show(bubble_sort(x));
         show(insert_sort(x));
         show(quick_sort(x,0, x.length - 1));
         show(merge_sort(x));
+        show(countPrimes(5));
     }
 
     public static void show(int[] x){
@@ -111,5 +125,9 @@ public class Sort {
             System.out.print(i + " ");
         }
         System.out.println();
+    }
+    public static void show(int x){
+
+        System.out.println(x);
     }
 }
