@@ -97,27 +97,53 @@ public class Sort {
         while(left <= right)
             arr[left++] = tmp[t++];
     }
-    public static  int countPrimes(int n) {
-        boolean[] notPrime = new boolean[n];
-        int count = 0;
-        for (int i = 2; i < n; i++) {
-            if (notPrime[i] == false) {
-                count++;
-                for (int j = 2; i*j < n; j++) {
-                    notPrime[i*j] = true;
-                }
+    public static int[] on_sort(int[] arr){
+        int max = 0;
+        for(int x : arr)
+            if(x > max)
+                max = x;
+
+        int[] times = new int[max + 1];
+
+        for(int x : arr){
+            times[x]++;
+        }
+        int index = 0;
+        for(int i = 0; i < times.length; i++){
+            for(int j = 0; j < times[i]; j++){
+                arr[index++] = i;
             }
         }
+        return arr;
+    }
 
-        return count;
+    public static int findMin(int[] nums){
+        int p1 = 0;
+        int p2 = nums.length - 1;
+        int mid = p1;
+        while(nums[p1] >= nums[p2]){
+            if(p2 - p1 == 1){
+                mid = p2;
+                break;
+            }
+
+            mid = (p1 + p2) / 2;
+            if(nums[mid] >= nums[p1])
+                p1 = mid;
+            else if(nums[mid] <= nums[p2])
+                p2 = mid;
+        }
+        return nums[mid];
     }
     public static void main(String[] args){
         int[] x = new int[]{5,4,7,9,12,9,0,3};
+        int[] y = new int[]{1};
         show(bubble_sort(x));
         show(insert_sort(x));
         show(quick_sort(x,0, x.length - 1));
         show(merge_sort(x));
-        show(countPrimes(5));
+        show(on_sort(x));
+        show(findMin(y));
     }
 
     public static void show(int[] x){
