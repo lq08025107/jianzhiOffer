@@ -1,5 +1,7 @@
 package C3;
 
+import C4.MirrorTree;
+import utils.Display;
 import utils.TreeNode;
 
 public class HasSubTree {
@@ -51,7 +53,9 @@ public class HasSubTree {
         node5_1.left = null;
         node5_1.right = null;
 
-        System.out.println(isSubtree(node1, node2_1));
-
+        //System.out.println(isSubtree(node1, node2_1));
+        Display.showTreePre(node1);
+        MirrorTree.getMirrorTree(node1);
+        Display.showTreePre(node1);
     }
 }
