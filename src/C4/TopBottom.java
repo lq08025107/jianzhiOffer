@@ -21,4 +21,23 @@ public class TopBottom {
             }
         }
     }
+    public int findBottomLeftValue(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        int res = root.val;
+        queue.offer(root);
+        while(queue.size() != 0){
+            TreeNode node = queue.poll();
+            for(int i = 0; i < queue.size(); i++){
+                if(node.left != null)
+                    queue.offer(node.left);
+                if(node.right != null)
+                    queue.offer(node.right);
+            }
+            if(queue.size() == 0){
+                res = node.val;
+                return res;
+            }
+        }
+        return res;
+    }
 }
